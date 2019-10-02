@@ -17,3 +17,6 @@ body {
   background-color: PapayaWhip;
 }
 
+table#movies th.hilite {
+  background-color: yellow;
+}
