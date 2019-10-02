@@ -14,5 +14,8 @@
  *= require_self
  */
 body {
-  background-color: lightblue;
+  background-color: AntiqueWhite;
+}
+h1 {
+  color: SaddleBrown;
 }
