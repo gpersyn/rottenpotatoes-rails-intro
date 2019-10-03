@@ -11,7 +11,21 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(params[:sort_by])
+    #@movies = Movie.order(params[:sort_by])
+    @all_ratings =  Movie.get_ratings() #["G","PG","PG-13","R"]
+    selected_ratings = params[:ratings]
+
+ 
+    if selected_ratings != nil
+      selected_ratings = selected_ratings.keys
+      @movies = Movie.with_ratings(selected_ratings)
+    else
+      #@movies = Movie.order(params[:sort_by])
+      @movies = Movie.all
+    end
+    
+    @movies = @movies.order(params[:sort_by])
+    
     
     #highlight sorted column
     if params[:sort_by] == "title"

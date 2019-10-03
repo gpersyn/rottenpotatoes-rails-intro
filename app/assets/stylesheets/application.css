@@ -20,3 +20,7 @@ body {
 table#movies th.hilite {
   background-color: yellow;
 }
+
+.navbar {
+	background-color: SaddleBrown
+}
