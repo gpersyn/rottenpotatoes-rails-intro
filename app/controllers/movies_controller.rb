@@ -17,7 +17,8 @@ class MoviesController < ApplicationController
     selected_sort = params[:sort_by]
     
     #@ratings_test = selected_ratings
- 
+  
+    #sort by ratings
     if selected_ratings == nil
       selected_ratings = session[:ratings]
     end
@@ -30,6 +31,7 @@ class MoviesController < ApplicationController
       @movies = Movie.all
     end
     
+    #sort by title
     if selected_sort != nil
       session[:sort_by] = selected_sort
     else
