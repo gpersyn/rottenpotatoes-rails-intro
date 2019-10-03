@@ -25,7 +25,6 @@
 #  database: db/production.sqlite3
 
 
-
 default: &default
   adapter: postgresql
   encoding: unicode
