@@ -6,8 +6,8 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]"
-  = submit_tag 'Refresh', :refreshed => "true"
+    = check_box_tag "ratings[#{rating}]", 1, if session[:ratings]; session[:ratings].include?(rating) else true end
+  = submit_tag 'Refresh'
   
 -#%td= @ratings_test
 

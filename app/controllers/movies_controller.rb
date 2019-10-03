@@ -13,26 +13,39 @@ class MoviesController < ApplicationController
   def index
     #@movies = Movie.order(params[:sort_by])
     @all_ratings =  Movie.get_ratings() #["G","PG","PG-13","R"]
-    selected_ratings = params[:ratings]
-
+    selected_ratings = params[:ratings] 
+    selected_sort = params[:sort_by]
+    
+    #@ratings_test = selected_ratings
  
+    if selected_ratings == nil
+      selected_ratings = session[:ratings]
+    end
+     
     if selected_ratings != nil
+      session[:ratings] = params[:ratings]
       selected_ratings = selected_ratings.keys
       @movies = Movie.with_ratings(selected_ratings)
     else
-      #@movies = Movie.order(params[:sort_by])
       @movies = Movie.all
     end
     
-    @movies = @movies.order(params[:sort_by])
+    if selected_sort != nil
+      session[:sort_by] = selected_sort
+    else
+      selected_sort = session[:sort_by]
+    end
+    
+    @movies = @movies.order(selected_sort)
     
     
     #highlight sorted column
-    if params[:sort_by] == "title"
+    if selected_sort == "title"
       @title_header = 'hilite'
-    elsif params[:sort_by] == 'release_date'
+    elsif selected_sort == 'release_date'
       @release_date_header ='hilite'
     end 
+    
   end
 
   def new
